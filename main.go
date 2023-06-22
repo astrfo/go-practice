@@ -13,8 +13,14 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: homePage")
 }
 
+func aboutPage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to My AboutPage!")
+	fmt.Println("Endpoint Hit: aboutPage")
+}
+
 func main() {
 	fmt.Println("AccessURL: http://localhost:8080/")
-	http.HandleFunc("/", homePage)    // URLルート("/")をhomePage関数にマッピング
-	http.ListenAndServe(":8080", nil) // Webサーバの起動
+	http.HandleFunc("/", homePage)       // URLルート("/")をhomePage関数にマッピング
+	http.HandleFunc("/about", aboutPage) // URLルート("/about")
+	http.ListenAndServe(":8080", nil)    // Webサーバの起動
 }
