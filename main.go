@@ -20,7 +20,11 @@ func aboutPage(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fmt.Println("AccessURL: http://localhost:8080/")
-	http.HandleFunc("/", homePage)       // URLルート("/")をhomePage関数にマッピング
-	http.HandleFunc("/about", aboutPage) // URLルート("/about")
-	http.ListenAndServe(":8080", nil)    // Webサーバの起動
+	// http.HandleFunc("/", homePage)       // URLルート("/")をhomePage関数にマッピング
+	// http.HandleFunc("/about", aboutPage) // URLルート("/about")
+
+	fs := http.FileServer(http.Dir(""))
+	http.Handle("/", fs)
+
+	http.ListenAndServe(":8080", nil) // Webサーバの起動
 }
