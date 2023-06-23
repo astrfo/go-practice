@@ -23,8 +23,8 @@ func main() {
 	// http.HandleFunc("/", homePage)       // URLルート("/")をhomePage関数にマッピング
 	// http.HandleFunc("/about", aboutPage) // URLルート("/about")
 
-	fs := http.FileServer(http.Dir(""))
-	http.Handle("/", fs)
+	fs := http.FileServer(http.Dir("templetes/")) // 指定したディレクトリ内のファイルをサーバー上で配信
+	http.Handle("/", fs)                          // サーバーのURLルート("/")で静的ファイルを提供
 
 	http.ListenAndServe(":8080", nil) // Webサーバの起動
 }
